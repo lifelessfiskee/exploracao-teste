@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Uma Pequena Exploração</title>
+<meta name="description" content="Um pequeno jogo de exploração noturno, feito com carinho.">
+<meta name="theme-color" content="#0b0f1e">
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Exploração">
+<link rel="icon" href="icons/icon-192.png">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== Tela de início ===================== -->
+<div id="start-screen" class="screen">
+  <div class="start-card">
+    <h1 class="title">uma pequena exploração</h1>
+    <p class="subtitle">feita com carinho, pra você</p>
+    <button id="btn-start" class="btn-primary">começar</button>
+    <p class="hint">
+      <span class="desktop-only">use WASD ou as setas para andar, e E para interagir</span>
+      <span class="mobile-only">use os controles na tela para andar e interagir</span>
+    </p>
+  </div>
+</div>
+
+<!-- ===================== Jogo ===================== -->
+<div id="game-container" class="hidden">
+
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HUD: contador de objetos encontrados + botão de música -->
+  <div class="hud">
+    <div id="progress-counter" class="progress-pill">objetos encontrados: 0/5</div>
+    <button id="btn-music" class="icon-btn" title="Música" aria-label="Ativar ou desativar música">🔇</button>
+  </div>
+
+  <!-- Dica de interação (aparece perto de objetos) -->
+  <div id="interact-hint" class="interact-hint hidden">
+    <span class="desktop-only">pressione E</span>
+    <span class="mobile-only">toque para interagir</span>
+  </div>
+
+  <!-- Caixa de diálogo -->
+  <div id="dialogue-box" class="dialogue-box hidden">
+    <p id="dialogue-text"></p>
+  </div>
+
+  <!-- Toast de progressão (ex: "algo mudou ao longe...") -->
+  <div id="game-toast" class="game-toast hidden"></div>
+
+  <!-- ===================== Controles mobile ===================== -->
+  <div id="mobile-controls" class="mobile-controls">
+    <div class="dpad">
+      <button class="dpad-btn dpad-up" data-dir="up" aria-label="Cima">▲</button>
+      <button class="dpad-btn dpad-left" data-dir="left" aria-label="Esquerda">◀</button>
+      <button class="dpad-btn dpad-right" data-dir="right" aria-label="Direita">▶</button>
+      <button class="dpad-btn dpad-down" data-dir="down" aria-label="Baixo">▼</button>
+    </div>
+    <button id="btn-interact-mobile" class="interact-btn" aria-label="Interagir">●</button>
+  </div>
+
+  <!-- ===================== Tela final ===================== -->
+  <div id="end-screen" class="end-screen hidden">
+    <div class="end-content">
+      <p id="end-text-1" class="end-text"></p>
+      <button id="btn-continue" class="btn-primary hidden">continuar</button>
+      <p id="end-text-2" class="end-text hidden"></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Áudio de fundo: coloque seu arquivo em assets/music.mp3 -->
+<audio id="bg-music" loop preload="none">
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<script src="game.js"></script>
+</body>
+</html>
